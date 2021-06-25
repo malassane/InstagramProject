@@ -1,0 +1,36 @@
+<%= form_with(model: @post, local: true ,url: choose_new_or_edit) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @post.errors.count %>There are errors.</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div> <br>
+  <% end %>
+
+  <div class="container">
+    <div class="post_content" maxlength ="140">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div> <br>
+
+    <div class="field">
+      <%= form.label :image %>
+      <%= image_tag(@post.avatar.url) if @post.avatar && @post.avatar.url %>
+      <%= form.file_field :avatar %>
+      <%= form.hidden_field :avatar_cache %>
+      <%= form.submit %>
+    </div>
+
+
+  </div>
+
+<% end %> <br>
+
+<div class="actions"><br> 
+<%=  link_to " Retour à la liste des blogs", posts_path, class: 'btn btn-primary'%>
+
+</div>
+<%= link_to " Retour à la liste des blogs", posts_path %>

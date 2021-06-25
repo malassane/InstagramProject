@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kouisine</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width">  <!-- head内にこのタグ設定を追記する -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+  <a class="navbar-brand" href="#">
+
+  <div class="style"><font size="12" color="blue">𝖎𝖓𝖘𝖙𝖆𝖌𝖗𝖆𝖒</font></div></a>
+  <form class="form-inline my-2 my-lg-0">
+      <% if logged_in? %>
+          <%= link_to "Profile", user_path(current_user.id), class:"btn btn-primary btn-sm"%>
+          <%= link_to "Logout", session_path(current_user.id),class:"btn btn-primary btn-sm", method: :delete %>
+
+      <% else %>
+        <%= link_to "Login", new_session_path,class:"btn btn-primary btn-sm" %>
+        <%= link_to "SignUp", new_user_path,class:"btn btn-primary btn-sm" %>
+      <% end %>
+    </form>
+
+
+  </nav>
+
+
+
+
+  <body>
+    <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <% if logged_in? %>
+    <%= link_to "Profile", user_path(current_user.id) %>
+    <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+    <% else %>
+    <%= link_to "Sign up", new_user_path %>
+    <%= link_to "Login", new_session_path %>
+    <% end %>
+
+    <%= yield %>
+
+
+
+  </body>
+  <!-- Footer -->
+  <footer class="page-footer font-small blue pt-4">
+
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://diver.diveintocode.jp/"> Dive Into Code</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+</html>

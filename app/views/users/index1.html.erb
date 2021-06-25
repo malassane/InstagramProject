@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MBlogs Dive</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/sample.css">
+</head>
+<body>
+  <header class="header clearfix">
+
+    <ul class="menu_horizontal">
+		<li class="bouton_gauche"><a href="#">xxx</a></li>
+    <li><%= link_to 'Delete post', user_path(user.id), method: :delete,data: { confirm: 'Can I really edit it?' } %></li>
+    </ul>
+  </header>
+
+  <h1>All blogs list</h1>
+
+  <p><%= notice %></p>
+
+  <% @users.each do |user| %>
+
+
+    <label for="">Date de creation du blog:</label> <%= user.created_at %> <br>
+
+<textarea id="w3review" name="w3review" rows="4" cols="25" maxlength="140">
+
+  <%= user.name %>
+  <%= user.email %>
+
+</textarea> <br>
+<p><b>Posted by:</b> <%= user.name %></p>
+<a href="<%= edit_user_path(user.id) %> " class="bt-btn-primary">Edit</a>
+
+<td><%= link_to 'Delete post', user_path(user.id), method: :delete,data: { confirm: 'Can I really edit it?' } %></td>
+
+<br>
+  <% end %>
+
+  <br>
+<%= link_to 'Post a new blog', new_user_path %>
+
+</body>
+</html>

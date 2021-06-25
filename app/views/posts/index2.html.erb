@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MBlogs Dive</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/sample.css">
+</head>
+<body background-color:red>
+
+
+  <h1 id="title">All blogs list</h1>
+
+  <p><%= notice %></p>
+
+  <% @posts.each do |post| %>
+
+  <p><%= post.created_at %> <%= post.user.name %></p>
+
+    <textarea id="w3review" name="w3review" rows="4" cols="25" maxlength="140">
+      <%= post.content %>
+    </textarea>   <br>
+    <%= image_tag(post.avatar_url,style:'width:300px;height:200px') if post.avatar_url %><br>
+
+
+  <div class="actions">
+  <%=  link_to 'Show', post, class: 'btn btn-primary'%>
+  <%=  link_to 'Edit', edit_post_path(post.id), class: 'btn btn-primary'%>
+  <%=  link_to 'Delete post', post_path(post.id), method: :delete,data: { confirm: 'Can I really edit it?' }, class: 'btn btn-primary'%>
+</div><br><br>
+
+<div class="actions">
+      <%=  link_to 'Post a new blog', new_post_path, class: 'btn btn-primary'%>
+</div>
+
+
+
+<% if post.user.id == current_user.id %>
+   <%=  link_to 'Edit', edit_post_path(post.id), class: 'btn btn-primary'%>
+   <%=  link_to 'Delete post', post_path(post.id), method: :delete,data: { confirm: 'Can I really edit it?' }, class: 'btn btn-
+     primary'%>
+<% end %>
+
+
+    <%= link_to 'Show', post %>
+    <a href="<%= edit_post_path(post.id) %> " class="bt-btn-primary">Edit</a>
+
+    <td><%= link_to 'Delete post', post_path(post.id), method: :delete,data: { confirm: 'Can I really edit it?' } %></td>
+
+    <br>
+  <% end %>
+  <br>
+<%= link_to 'Post a new blog', new_post_path %>
+
+</body>
+</html>

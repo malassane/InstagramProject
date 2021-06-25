@@ -1,0 +1,31 @@
+
+<% if @user.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class="container">
+
+          <%= f.text_field :name, placeholder: "Enter you name" %><br><br>
+          <%= f.text_field :email, placeholder: "Enter you address" %><br><br>
+          <%= f.password_field :password, placeholder: "Enter password" %><br><br>
+          <%= f.password_field :password_confirmation, placeholder: "Enter you name" %><br><br>
+
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %><br><br>
+
+          <%= f.submit "Create my account" %>    <%= f.submit "Edit" %><br><br>
+
+
+          <%= f.submit "Create my account" %>
+  </div>
+
+<br><br>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="container_connexion">
+
+  <div class="row">
+      <div class=""></div>
+      <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+        <div class="label_button">
+          <%= f.text_field :email, placeholder: "Entrer votre email" %><br><br>
+        </div>
+        <div class="labal_pass">
+          <%= f.password_field :password, placeholder: "votre mot de passe" %><br>
+        </div>
+
+        <div class="actions"><br> <br>
+          <%= f.submit 'Connexion', class: 'btn btn-primary'%>
+        </div>
+
+        <div class="actions"><br> <br>
+        <%=  link_to "Créer un compte", new_user_path, class: 'btn btn-primary'%>
+
+        </div>
+
+  </div>
+
+ <% end %>
+
+ <div class="container">
+  </div>
+    <div class="test">
+    <h1>Instagram clone </h1>
+  </div>
+
+</div>
